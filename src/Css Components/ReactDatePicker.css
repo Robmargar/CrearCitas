@@ -1,0 +1,30 @@
+h2{
+    color: rgb(255, 246, 233);
+}
+
+.Container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width:  1200px;
+    padding: 2rem;
+    border-radius: 28px;
+    background: #333232;
+    box-shadow:  -5px -5px 10px #585858,
+                 5px 5px 10px #3b3b3b;
+}
+
+.FormDashboard{
+    border-radius: 28px;
+    background: #7ab4f7;
+    box-shadow: inset -7px -7px 14px #46678d,
+                inset 7px 7px 14px #aeffff;
+    padding: 1.5rem;
+    margin-right: 1rem;
+}
+
+.Consult{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: space-evenly;
+}
