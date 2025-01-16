@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker'
 import "../Css Components/OnlyTimePicker.css"
 import "react-datepicker/dist/react-datepicker.css"
 
-export default function OnliTymePicker({interval, handleOnChange}) {
+export default function OnliTymePicker({interval, handleOnChange, name}) {
     const[Time,SetTime]=useState(0);
     
     const handleOnChangeTime=(time)=>{
@@ -29,6 +29,7 @@ export default function OnliTymePicker({interval, handleOnChange}) {
             timeIntervals={interval}
             dateFormat="hh:mm aa"
             value={Time}
+            name={name}
             />
     )
 }

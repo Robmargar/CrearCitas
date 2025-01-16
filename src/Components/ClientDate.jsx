@@ -41,8 +41,10 @@ export default function ClientDate({weekend, interval,initialTime, finalTime}){
     <div class="coolinput">
       <label for="datePicker" className='text'>Fecha y hora de consulta:</label>
       <DatePicker
-        name="datePicker"
+        name="date"
+        id='datePicker'
         className='input'
+        autocomplete="off"
         placeholderText='15/January/2025  ||  12:59 PM'
         selected={selectedDate}
         onChange={handleOnChangeDate}

@@ -53,15 +53,15 @@ export const ReactDatePicker = () => {
       <Weekend handleOnChange={handleOnChangeWeekend}/>
       <div className='Consult'>
         <h4>Tiempo de consulta (Minutos)</h4>
-        <input type="number" onChange={handleOnChangeIntervals} />
+        <input type="number" onChange={handleOnChangeIntervals} name='intervals'/>
       </div>
       <div className='Consult'>
       <h4>Hora Inicio</h4>
-      <OnliTymePicker interval={dataForm.intervals} handleOnChange={handleOnChangeITime}/>
+      <OnliTymePicker interval={dataForm.intervals} handleOnChange={handleOnChangeITime} name="initialTime"/>
       </div >
       <div className='Consult'>
       <h4>Hora Final</h4>
-      <OnliTymePicker interval={dataForm.intervals} handleOnChange={handleOnChangeFTime}/>
+      <OnliTymePicker interval={dataForm.intervals} handleOnChange={handleOnChangeFTime} name="finalTime"/>
       </div>
       <input type="submit" className='buttonSubmit' name="Generar Horario" id="ButtonForm" />
     </form>
