@@ -21,20 +21,33 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
     hora:false
   });
 
+  const handleOnChangeName=(e)=>{
+    const newClient={...client,[e.target.name]:e.target.value};
+    let validName=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    if(validName.exec(newClient.nombre)){
+      setClient(newClient);
+      setValid({...valid,
+                name:true});
+    }else{
+      setValid({...valid,
+                name:false});
+    };
+  };
+
   const handleOnChangeMail=(e)=>{
     const newClient={...client,[e.target.name]:e.target.value}
     let validEmail= /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
     if(validEmail.test(newClient.email)){
       setClient(newClient);
       setValid({...valid,
-                email:true})
+                email:true});
     } else{
       setValid({...valid,
                 email:false});
     };
   };
 
-  
+  console.log(valid)
   return (
     <div className='DateForm'>
       <h2> Formulario para agendar Cita</h2>
@@ -50,6 +63,7 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
               minLength={5}
               maxLength={40}
               autocomplete="off"
+              onChange={handleOnChangeName}
               />
           </div>
           <div className='coolinput'>
@@ -66,14 +80,15 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
           </div>
           <div className='coolinput'>
               <label for="inputMotive" className='text ' >Motivo de Consulta</label>
-              <input type="text" 
-              placeholder='Escribe tus sintomas...' 
+              <textarea 
+              placeholder='Describe tus sintomas'
               name='motive' 
               className='input Motive' 
               id='inputMotive'
               minLength={5}
-              maxLength={40}
+              maxLength={120}
               autocomplete="off"
+              required
               />
           </div>
           <ClientDate weekend={weekend} interval={interval} initialTime={initialTime} finalTime={finalTime}/>

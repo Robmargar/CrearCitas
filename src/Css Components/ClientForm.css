@@ -34,7 +34,7 @@
     
   }
   
-  .coolinput input[type=text].input , input[type=email].input {
+  .coolinput input[type=text].input , input[type=email].input, textarea {
     padding: 11px 10px;
     font-size: 14px;
     border: 2px  #7ab4f7 solid;
@@ -44,10 +44,7 @@
     
   }
   
-  .coolinput input[type=text].input:focus, input[type=email].input:focus {
+  .coolinput input[type=text].input:focus, input[type=email].input:focus, textarea {
     outline: none;
   }
 
-  .Motive{
-    height: 80px;
-  }
