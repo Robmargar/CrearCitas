@@ -18,22 +18,23 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
     email:false,
     motivo:false,
     fecha:false,
-    hora:false
+    hora:false,
   });
+
+  const[form,setForm]=useState(true)
 
   const handleOnChangeName=(e)=>{
     const newClient={...client,[e.target.name]:e.target.value};
     let validName=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    if(validName.exec(newClient.nombre)){
+    if(validName.test(newClient.nombre)){
       setClient(newClient);
       setValid({...valid,
-                name:true});
+                nombre:true});
     }else{
       setValid({...valid,
-                name:false});
+                nombre:false});
     };
   };
-
   const handleOnChangeMail=(e)=>{
     const newClient={...client,[e.target.name]:e.target.value}
     let validEmail= /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -46,12 +47,40 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
                 email:false});
     };
   };
+  const handleOnChangeMotive=(e)=>{
+    const newClient={...client,[e.target.name]:e.target.value}
+    if(5>(newClient.motivo.length)<120){
+      setClient(newClient);
+      setValid({...valid,
+                motivo:true});
+    } else{
+      setValid({...valid,
+                motivo:false});
+    };
+  };
+  const handleOnChangeTimeDate=(e)=>{
+    setValid({...valid,
+      fecha:e,
+      hora:e
+    });
+  };
+  const handleOnValidForm=()=>{
+      if(valid.nombre===true&&
+        valid.email===true&&
+        valid.motivo===true&&
+        valid.fecha===true&&
+        valid.hora===true
+        ){
+        setForm(false)
+      }else{
+        setForm(true)
+      }
+  };
 
-  console.log(valid)
   return (
     <div className='DateForm'>
       <h2> Formulario para agendar Cita</h2>
-      <form className='DoDate'>
+      <form className='DoDate' onChange={handleOnValidForm} >
           <div className='coolinput'>
               <label for="name" className='text'>Nombre:</label>
               <input 
@@ -82,18 +111,23 @@ export default function ClientForm({weekend, interval,initialTime, finalTime}){
               <label for="inputMotive" className='text ' >Motivo de Consulta</label>
               <textarea 
               placeholder='Describe tus sintomas'
-              name='motive' 
+              name='motivo' 
               className='input Motive' 
               id='inputMotive'
               minLength={5}
               maxLength={120}
               autocomplete="off"
+              onChange={handleOnChangeMotive}
               required
               />
           </div>
-          <ClientDate weekend={weekend} interval={interval} initialTime={initialTime} finalTime={finalTime}/>
+          <ClientDate weekend={weekend} interval={interval} initialTime={initialTime} finalTime={finalTime} handleOnChangeTimeDate={handleOnChangeTimeDate}/>
           <div>
-            <input className='buttonSubmit' type="submit" />
+            <input 
+            className='buttonSubmit' 
+            type="submit"
+            disabled={form}
+            />
           </div>
       </form>
     </div>

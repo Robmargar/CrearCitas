@@ -8,7 +8,7 @@ import {useState} from 'react'
 import "../Css Components/ClientForm.css"
 import "react-datepicker/dist/react-datepicker.css"
 
-export default function ClientDate({weekend, interval,initialTime, finalTime}){
+export default function ClientDate({weekend, interval,initialTime, finalTime, handleOnChangeTimeDate}){
   const[selectedDate,SetSelectedDate]=useState(
     null
   );
@@ -21,7 +21,8 @@ export default function ClientDate({weekend, interval,initialTime, finalTime}){
   const minDate=`"${year}-${month+1}-${today}"`;
 
   const handleOnChangeDate=(date)=>{
-    SetSelectedDate(date)
+    SetSelectedDate(date);
+    handleOnChangeTimeDate(true);
   };
 
   //Función para revisar si la fecha es fin de semana (weekend).
